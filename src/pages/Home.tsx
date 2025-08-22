@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
+import { QrCode, Phone, Shield, Heart } from "lucide-react";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -49,7 +50,7 @@ const Home = () => {
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-senior-2xl">
           <Card className="p-senior text-center">
             <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
-              <span className="text-senior-2xl">🔗</span>
+              <QrCode className="w-8 h-8 text-primary" />
             </div>
             <h3 className="text-senior-lg font-semibold text-foreground mb-2">
               QR 코드 생성
@@ -61,7 +62,7 @@ const Home = () => {
 
           <Card className="p-senior text-center">
             <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
-              <span className="text-senior-2xl">📞</span>
+              <Phone className="w-8 h-8 text-primary" />
             </div>
             <h3 className="text-senior-lg font-semibold text-foreground mb-2">
               빠른 연락
@@ -73,7 +74,7 @@ const Home = () => {
 
           <Card className="p-senior text-center">
             <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
-              <span className="text-senior-2xl">🔒</span>
+              <Shield className="w-8 h-8 text-primary" />
             </div>
             <h3 className="text-senior-lg font-semibold text-foreground mb-2">
               개인정보 보호
@@ -85,7 +86,7 @@ const Home = () => {
 
           <Card className="p-senior text-center">
             <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
-              <span className="text-senior-2xl">💙</span>
+              <Heart className="w-8 h-8 text-primary" />
             </div>
             <h3 className="text-senior-lg font-semibold text-foreground mb-2">
               가족의 안심
