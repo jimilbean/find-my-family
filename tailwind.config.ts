@@ -26,7 +26,8 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					foreground: 'hsl(var(--primary-foreground))',
+					hover: 'hsl(var(--primary-hover))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
@@ -35,6 +36,10 @@ export default {
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
 					foreground: 'hsl(var(--destructive-foreground))'
+				},
+				success: {
+					DEFAULT: 'hsl(var(--success))',
+					foreground: 'hsl(var(--success-foreground))'
 				},
 				muted: {
 					DEFAULT: 'hsl(var(--muted))',
@@ -67,6 +72,19 @@ export default {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			fontSize: {
+				'senior-sm': ['1.125rem', { lineHeight: '1.6' }],
+				'senior-base': ['1.25rem', { lineHeight: '1.6' }], 
+				'senior-lg': ['1.5rem', { lineHeight: '1.5' }],
+				'senior-xl': ['1.875rem', { lineHeight: '1.4' }],
+				'senior-2xl': ['2.25rem', { lineHeight: '1.3' }],
+				'senior-3xl': ['3rem', { lineHeight: '1.2' }]
+			},
+			spacing: {
+				'senior': '1.5rem', // 24px - 시니어 친화적 터치 영역
+				'senior-lg': '2rem', // 32px
+				'senior-xl': '3rem' // 48px
 			},
 			keyframes: {
 				'accordion-down': {

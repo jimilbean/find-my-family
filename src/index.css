@@ -2,41 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* 치매 어르신 실종 예방 앱 디자인 시스템 - 시니어 친화적 색상과 스타일 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* 기본 배경과 텍스트 - 높은 대비로 가독성 향상 */
+    --background: 0 0% 98%;
+    --foreground: 0 0% 15%;
 
+    /* 카드와 컨테이너 */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 0 0% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 0 0% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* 신뢰감 있는 파란색 계열 - 주요 액션용 */
+    --primary: 214 84% 56%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 214 84% 46%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* 부드러운 회색 계열 - 보조 요소용 */
+    --secondary: 210 20% 92%;
+    --secondary-foreground: 0 0% 25%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* 음소거된 색상 - 덜 중요한 정보용 */
+    --muted: 210 20% 96%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* 액센트 색상 - 강조 요소용 */
+    --accent: 214 84% 92%;
+    --accent-foreground: 214 84% 30%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* 경고/삭제용 색상 */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* 성공 색상 - 완료/확인용 */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
 
-    --radius: 0.5rem;
+    /* 테두리와 입력 필드 */
+    --border: 214 31% 91%;
+    --input: 214 31% 96%;
+    --ring: 214 84% 56%;
+
+    /* 둥근 모서리 - 부드럽고 친근한 느낌 */
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -56,6 +68,7 @@ All colors MUST be HSL.
   }
 
   .dark {
+    /* 다크 모드는 시니어 사용자에게 권장하지 않아 기본값 유지 */
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
 
@@ -65,8 +78,9 @@ All colors MUST be HSL.
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 214 84% 56%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 214 84% 46%;
 
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
@@ -80,9 +94,13 @@ All colors MUST be HSL.
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --ring: 214 84% 56%;
+    
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
