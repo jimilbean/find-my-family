@@ -42,31 +42,47 @@ const ScanQR = () => {
           </p>
         </div>
 
-        {/* QR 스캔 방법들 */}
-        <div className="space-y-senior">
-          {/* 카메라 스캔 */}
-          <Card className="p-senior-xl text-center">
-            <div className="mb-senior">
-              <div className="w-20 h-20 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
-                <span className="text-senior-2xl">📷</span>
-              </div>
-              <h2 className="text-senior-2xl font-semibold text-foreground mb-4">
-                카메라로 스캔하기
-              </h2>
-              <p className="text-senior-base text-muted-foreground mb-senior">
-                가장 쉽고 빠른 방법입니다
+        {/* QR 코드 스캔 영역 */}
+        <Card className="p-senior-xl text-center mb-senior">
+          <h2 className="text-senior-xl font-semibold text-foreground mb-senior">
+            QR 코드를 스캔해주세요
+          </h2>
+          <p className="text-senior-base text-muted-foreground mb-senior">
+            어르신의 QR코드를 카메라로 비춰보세요
+          </p>
+          
+          {/* QR 스캔 영역 시뮬레이션 */}
+          <div className="w-64 h-64 mx-auto mb-senior bg-muted border-2 border-dashed border-border rounded-lg flex items-center justify-center">
+            <div className="text-center">
+              <div className="text-6xl mb-2">📷</div>
+              <p className="text-senior-sm text-muted-foreground">
+                카메라가 이곳에<br />표시됩니다
               </p>
             </div>
-            <Button 
-              variant="senior-primary" 
-              size="senior-lg" 
-              onClick={startCameraScanning}
-              className="w-full"
-            >
-              📷 카메라 시작하기
-            </Button>
-          </Card>
+          </div>
+          
+          <Button 
+            variant="senior-primary" 
+            size="senior-lg" 
+            onClick={startCameraScanning}
+            className="w-full mb-4"
+          >
+            QR 코드 스캔하기 (데모)
+          </Button>
+          
+          <div className="bg-accent p-4 rounded-lg">
+            <h3 className="text-senior-base font-semibold text-accent-foreground mb-2">
+              스캔 전 확인사항:
+            </h3>
+            <ul className="text-senior-sm text-accent-foreground space-y-1 text-left">
+              <li>• QR 코드가 생명명하게 보이는지 확인하세요</li>
+              <li>• 충분한 조명이 있는 곳에서 스캔해주세요</li>
+              <li>• 카메라를 QR 코드에 정확히 맞춰주세요</li>
+            </ul>
+          </div>
+        </Card>
 
+        <div className="space-y-senior">
           {/* 구분선 */}
           <div className="text-center">
             <div className="relative">

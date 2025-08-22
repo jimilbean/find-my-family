@@ -146,9 +146,69 @@ const ContactInfo = () => {
             disabled={locationShared}
             className="w-full"
           >
-            {locationShared ? "📍 위치 전송 완료" : "📍 현재 위치 문자 전송"}
+            📍 현재 위치 문자전송
+          </Button>
+          
+          {/* 사진 촬영 버튼 */}
+          <Button 
+            variant="outline" 
+            size="senior" 
+            className="w-full"
+          >
+            📷 사진 촬영하기
           </Button>
         </div>
+
+        {/* 응급 상황 안내 */}
+        <Card className="mt-senior bg-destructive/10 border-destructive/20">
+          <div className="p-senior text-center">
+            <h3 className="text-senior-lg font-semibold text-destructive mb-2">
+              응급 상황 시
+            </h3>
+            <p className="text-senior-sm text-destructive/80 mb-4">
+              어르신의 의식을 잃었거나 심각한 부상이 의심될 경우:
+            </p>
+            <Button 
+              variant="destructive" 
+              size="senior-lg"
+              onClick={() => window.location.href = 'tel:119'}
+              className="w-full"
+            >
+              119 신고하기
+            </Button>
+            <p className="text-senior-xs text-destructive/60 mt-2">
+              생명이 위험한 응급상황에서는 119에 먼저 신고해주세요
+            </p>
+          </div>
+        </Card>
+
+        {/* 사진 촬영 안내 */}
+        <Card className="mt-4 p-senior bg-muted">
+          <h3 className="text-senior-base font-semibold text-muted-foreground mb-2">
+            사진 촬영
+          </h3>
+          <p className="text-senior-sm text-muted-foreground mb-4">
+            사진을 촬영하여 위치정보와 함께 보호자에게 전송하세요
+          </p>
+          
+          <div className="w-full h-32 bg-background border-2 border-dashed border-border rounded-lg flex items-center justify-center mb-4">
+            <div className="text-center">
+              <div className="text-2xl mb-2">📷</div>
+              <p className="text-senior-sm text-muted-foreground">
+                카메라로 촬영하거나<br />갤러리에서 선택하세요
+              </p>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-2 gap-2">
+            <Button variant="outline" size="sm">
+              📷 카메라로 촬영하기
+            </Button>
+            <Button variant="outline" size="sm">
+              📱 갤러리에서 선택하기
+            </Button>
+          </div>
+        </Card>
 
         {/* 안내 메시지 */}
         <div className="mt-senior-xl p-senior bg-muted rounded-lg">
@@ -158,16 +218,6 @@ const ContactInfo = () => {
           <p className="text-senior-sm text-muted-foreground">
             어르신이 집으로 안전하게 돌아갈 수 있도록 도와주셔서 정말 고맙습니다. 
             보호자가 곧 연락드릴 예정입니다.
-          </p>
-        </div>
-
-        {/* 응급 상황 안내 */}
-        <div className="mt-4 p-senior bg-destructive/10 border border-destructive/20 rounded-lg">
-          <h3 className="text-senior-base font-semibold text-destructive mb-2">
-            🚨 응급상황 시
-          </h3>
-          <p className="text-senior-sm text-destructive/80">
-            어르신이 다치셨거나 응급상황인 경우 즉시 <strong>119</strong>에 신고해주세요.
           </p>
         </div>
       </div>
