@@ -27,7 +27,6 @@ const Home = () => {
             className="h-auto py-senior-lg"
           >
             <div className="text-center">
-              <div className="text-senior-3xl mb-2">👤</div>
               <div className="text-senior-xl font-semibold">보호자 등록하기</div>
               <div className="text-senior-sm opacity-90 mt-1">QR코드 생성하기</div>
             </div>
@@ -40,7 +39,6 @@ const Home = () => {
             className="h-auto py-senior-lg"
           >
             <div className="text-center">
-              <div className="text-senior-3xl mb-2">📱</div>
               <div className="text-senior-xl font-semibold">QR 코드 스캔하기</div>
               <div className="text-senior-sm opacity-90 mt-1">어르신 발견 시</div>
             </div>
@@ -51,7 +49,7 @@ const Home = () => {
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-senior-2xl">
           <Card className="p-senior text-center">
             <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
-              <span className="text-senior-2xl">📋</span>
+              <span className="text-senior-2xl">🔗</span>
             </div>
             <h3 className="text-senior-lg font-semibold text-foreground mb-2">
               QR 코드 생성
@@ -75,7 +73,7 @@ const Home = () => {
 
           <Card className="p-senior text-center">
             <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
-              <span className="text-senior-2xl">🛡️</span>
+              <span className="text-senior-2xl">🔒</span>
             </div>
             <h3 className="text-senior-lg font-semibold text-foreground mb-2">
               개인정보 보호
