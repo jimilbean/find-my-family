@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
+import { QrCode } from "lucide-react";
 
 const ScanQR = () => {
   const navigate = useNavigate();
@@ -48,7 +49,7 @@ const ScanQR = () => {
           {/* QR 스캔 영역 시뮬레이션 */}
           <div className="w-64 h-64 mx-auto mb-senior bg-muted border-2 border-dashed border-border rounded-lg flex items-center justify-center">
             <div className="text-center">
-              <div className="text-6xl mb-2 text-muted-foreground">📱</div>
+              <QrCode className="w-16 h-16 mx-auto mb-2 text-muted-foreground" />
               <p className="text-senior-sm text-muted-foreground">
                 카메라가 이곳에<br />표시됩니다
               </p>
@@ -61,7 +62,7 @@ const ScanQR = () => {
             onClick={startCameraScanning}
             className="w-full mb-senior"
           >
-            QR 코드 스캔하기 (데모)
+            QR 코드 스캔하기
           </Button>
           
           <div className="bg-accent/50 p-4 rounded-lg text-left">
