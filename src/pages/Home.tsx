@@ -11,7 +11,7 @@ const Home = () => {
       <div className="mx-auto max-w-4xl">
         {/* 헤더 */}
         <div className="text-center mb-16">
-          <h1 className="text-senior-4xl font-bold text-primary mb-4">
+          <h1 className="text-5xl font-bold text-primary mb-4">
             치매 어르신 안전 지킴이
           </h1>
           <p className="text-senior-xl text-muted-foreground mb-senior-lg">
