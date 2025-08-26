@@ -106,7 +106,7 @@ const Home = () => {
           <div className="grid gap-senior-lg md:grid-cols-2">
             {/* 보호자용 */}
             <div>
-              <h3 className="text-senior-xl font-semibold text-primary mb-4">
+              <h3 className="text-senior-xl font-semibold text-primary mb-4 text-center">
                 보호자용
               </h3>
               <div className="space-y-3">
@@ -131,7 +131,7 @@ const Home = () => {
 
             {/* 발견자용 */}
             <div>
-              <h3 className="text-senior-xl font-semibold text-success mb-4">
+              <h3 className="text-senior-xl font-semibold text-success mb-4 text-center">
                 발견자용
               </h3>
               <div className="space-y-3">
