@@ -14,7 +14,7 @@ const Home = () => {
           <h1 className="text-5xl font-bold text-primary mb-4">
             치매 어르신 안전 지킴이
           </h1>
-          <p className="text-senior-xl text-muted-foreground mb-senior-lg">
+          <p className="text-senior-lg text-muted-foreground mb-senior-lg">
             QR 코드를 통해 실종 위험을 줄이고, 발견 시 신속한 연락이 가능한 안전 서비스입니다
           </p>
         </div>
