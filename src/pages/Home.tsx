@@ -10,7 +10,7 @@ const Home = () => {
     <div className="min-h-screen bg-background p-6 md:p-12">
       <div className="mx-auto max-w-4xl">
         {/* 헤더 */}
-        <div className="text-center mb-senior-xl">
+        <div className="text-center mb-16">
           <h1 className="text-senior-4xl font-bold text-primary mb-4">
             치매 어르신 안전 지킴이
           </h1>
@@ -20,7 +20,7 @@ const Home = () => {
         </div>
 
         {/* 메인 액션 버튼 */}
-        <div className="grid gap-4 md:gap-6 md:grid-cols-2 mb-senior-2xl">
+        <div className="grid gap-4 md:gap-6 md:grid-cols-2 mb-20">
           <Button 
             variant="senior-primary" 
             size="senior-lg" 
@@ -47,7 +47,7 @@ const Home = () => {
         </div>
 
         {/* 서비스 특징 */}
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-senior-2xl">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-20">
           <Card className="p-senior text-center">
             <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
               <QrCode className="w-8 h-8 text-primary" />
@@ -98,7 +98,7 @@ const Home = () => {
         </div>
 
         {/* 이용 방법 */}
-        <Card className="p-senior-xl mb-senior-xl">
+        <Card className="p-senior-xl mb-16">
           <h2 className="text-senior-2xl font-bold text-center text-foreground mb-senior">
             이용 방법
           </h2>
