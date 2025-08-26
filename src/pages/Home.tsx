@@ -7,7 +7,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-background p-4 md:p-8">
+    <div className="min-h-screen bg-background p-6 md:p-12">
       <div className="mx-auto max-w-4xl">
         {/* 헤더 */}
         <div className="text-center mb-senior-xl">

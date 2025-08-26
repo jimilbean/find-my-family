@@ -66,7 +66,7 @@ const ContactInfo = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background p-4">
+    <div className="min-h-screen bg-background p-6 md:p-12">
       <div className="mx-auto max-w-md">
         {/* 헤더 */}
         <div className="text-center mb-senior-lg">

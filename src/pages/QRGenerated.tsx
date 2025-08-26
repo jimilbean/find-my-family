@@ -41,7 +41,7 @@ const QRGenerated = () => {
 
   if (!caregiverData.caregiverName) {
     return (
-      <div className="min-h-screen bg-background p-4 flex items-center justify-center">
+      <div className="min-h-screen bg-background p-6 md:p-12 flex items-center justify-center">
         <Card className="p-senior-xl text-center">
           <h2 className="text-senior-xl font-semibold text-foreground mb-4">
             잘못된 접근입니다
@@ -55,7 +55,7 @@ const QRGenerated = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background p-4 md:p-8">
+    <div className="min-h-screen bg-background p-6 md:p-12">
       <div className="mx-auto max-w-2xl">
         {/* 헤더 */}
         <div className="text-center mb-senior-xl">
