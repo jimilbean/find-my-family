@@ -25,7 +25,7 @@ const Home = () => {
             variant="senior-primary" 
             size="senior-lg" 
             onClick={() => navigate('/caregiver')}
-            className="h-auto py-senior-lg"
+            className="h-auto py-senior-xl px-senior-lg"
           >
             <div className="text-center">
               <div className="text-senior-xl font-semibold">보호자 등록하기</div>
@@ -37,7 +37,7 @@ const Home = () => {
             variant="senior-secondary" 
             size="senior-lg" 
             onClick={() => navigate('/scan')}
-            className="h-auto py-senior-lg"
+            className="h-auto py-senior-xl px-senior-lg"
           >
             <div className="text-center">
               <div className="text-senior-xl font-semibold">QR 코드 스캔하기</div>
