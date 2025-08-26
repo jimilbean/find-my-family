@@ -112,19 +112,19 @@ const Home = () => {
               <div className="space-y-3">
                 <div className="flex items-start gap-3">
                   <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-sm font-bold flex items-center justify-center mt-1">1</div>
-                  <p className="text-senior-base">연락처와 간단한 메시지를 입력합니다</p>
+                  <p className="text-base">연락처와 간단한 메시지를 입력합니다</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-sm font-bold flex items-center justify-center mt-1">2</div>
-                  <p className="text-senior-base">시스템이 고유 QR 코드를 생성해드립니다</p>
+                  <p className="text-base">시스템이 고유 QR 코드를 생성해드립니다</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-sm font-bold flex items-center justify-center mt-1">3</div>
-                  <p className="text-senior-base">QR 코드를 다운로드하여 출력합니다</p>
+                  <p className="text-base">QR 코드를 다운로드하여 출력합니다</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-sm font-bold flex items-center justify-center mt-1">4</div>
-                  <p className="text-senior-base">옷이나 소지품에 부착합니다</p>
+                  <p className="text-base">옷이나 소지품에 부착합니다</p>
                 </div>
               </div>
             </div>
@@ -137,19 +137,19 @@ const Home = () => {
               <div className="space-y-3">
                 <div className="flex items-start gap-3">
                   <div className="w-6 h-6 rounded-full bg-success text-success-foreground text-sm font-bold flex items-center justify-center mt-1">1</div>
-                  <p className="text-senior-base">스마트폰으로 QR 코드를 스캔합니다</p>
+                  <p className="text-base">스마트폰으로 QR 코드를 스캔합니다</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-6 h-6 rounded-full bg-success text-success-foreground text-sm font-bold flex items-center justify-center mt-1">2</div>
-                  <p className="text-senior-base">표출된 연락처와 메시지를 확인합니다</p>
+                  <p className="text-base">표출된 연락처와 메시지를 확인합니다</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-6 h-6 rounded-full bg-success text-success-foreground text-sm font-bold flex items-center justify-center mt-1">3</div>
-                  <p className="text-senior-base">전화하기 버튼을 눌러 즉시 연결합니다</p>
+                  <p className="text-base">전화하기 버튼을 눌러 즉시 연결합니다</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-6 h-6 rounded-full bg-success text-success-foreground text-sm font-bold flex items-center justify-center mt-1">4</div>
-                  <p className="text-senior-base">필요시 현재 위치를 문자로 전송합니다</p>
+                  <p className="text-base">필요시 현재 위치를 문자로 전송합니다</p>
                 </div>
               </div>
             </div>
