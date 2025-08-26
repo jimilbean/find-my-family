@@ -69,7 +69,7 @@ export default {
 				}
 			},
 			fontFamily: {
-				sans: ['Noto Sans KR', 'sans-serif']
+				sans: ['eScoreDream', 'sans-serif']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
