@@ -13,20 +13,9 @@ const QRGenerated = () => {
   useEffect(() => {
     // QR 코드 생성 로직
     const generateQRCode = () => {
-      // 임의의 user_no 생성 (1000-9999 범위)
-      const userNo = Math.floor(Math.random() * 9000) + 1000;
-      
-      const qrData = {
-        user_no: userNo,
-        id: Date.now().toString(),
-        caregiverName: caregiverData.caregiverName,
-        phoneNumber: caregiverData.phoneNumber,
-        seniorNotes: caregiverData.seniorNotes,
-      };
-      
-      // QR 코드에 포함될 데이터를 JSON 문자열로 변환
-      const qrJsonData = JSON.stringify(qrData);
-      setQRCode(qrJsonData);
+      // QR 코드는 항상 memorycp.com으로 이동
+      const qrUrl = "https://www.memorycp.com/";
+      setQRCode(qrUrl);
     };
 
     if (caregiverData.caregiverName) {
