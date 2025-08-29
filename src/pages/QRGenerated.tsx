@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useLocation, useNavigate } from "react-router-dom";
+import QRCode from "react-qr-code";
 
 const QRGenerated = () => {
   const location = useLocation();
@@ -10,19 +11,22 @@ const QRGenerated = () => {
   const [caregiverData] = useState(location.state || {});
 
   useEffect(() => {
-    // QR 코드 생성 로직 (실제로는 백엔드에서 처리)
+    // QR 코드 생성 로직
     const generateQRCode = () => {
+      // 임의의 user_no 생성 (1000-9999 범위)
+      const userNo = Math.floor(Math.random() * 9000) + 1000;
+      
       const qrData = {
+        user_no: userNo,
         id: Date.now().toString(),
         caregiverName: caregiverData.caregiverName,
         phoneNumber: caregiverData.phoneNumber,
         seniorNotes: caregiverData.seniorNotes,
       };
       
-      // 실제로는 QR 라이브러리를 사용하여 생성
-      // 여기서는 시뮬레이션용 URL
-      const qrUrl = `${window.location.origin}/contact/${qrData.id}`;
-      setQRCode(qrUrl);
+      // QR 코드에 포함될 데이터를 JSON 문자열로 변환
+      const qrJsonData = JSON.stringify(qrData);
+      setQRCode(qrJsonData);
     };
 
     if (caregiverData.caregiverName) {
@@ -70,19 +74,13 @@ const QRGenerated = () => {
         {/* QR 코드 카드 */}
         <Card className="p-senior-xl text-center mb-senior-lg" id="qr-card">
           <div className="mb-senior">
-            {/* QR 코드 영역 - 실제로는 QR 이미지가 들어갈 자리 */}
-            <div className="w-48 h-48 mx-auto mb-4 bg-foreground border-2 border-border rounded-lg flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-background text-xs mb-2">QR CODE</div>
-                <div className="grid grid-cols-8 gap-1">
-                  {Array.from({ length: 64 }).map((_, i) => (
-                    <div 
-                      key={i} 
-                      className={`w-1 h-1 ${Math.random() > 0.5 ? 'bg-background' : 'bg-foreground'}`}
-                    />
-                  ))}
-                </div>
-              </div>
+            {/* 실제 QR 코드 */}
+            <div className="w-48 h-48 mx-auto mb-4 bg-white p-4 rounded-lg border-2 border-border">
+              <QRCode
+                value={qrCode}
+                size={176}
+                style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+              />
             </div>
             
             <div className="text-senior-sm text-muted-foreground break-all">
