@@ -69,13 +69,19 @@ const QRGenerated = () => {
               left: 50%;
               transform: translate(-50%, -50%);
               background: white !important;
-              padding: 20px;
+              padding: 40px;
               margin: 0;
               border: none;
               box-shadow: none;
+              width: 500px !important;
+              height: 500px !important;
             }
             #qr-image-only * {
               visibility: visible;
+            }
+            #qr-image-only svg {
+              width: 420px !important;
+              height: 420px !important;
             }
             @page {
               margin: 0;
