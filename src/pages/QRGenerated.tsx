@@ -99,10 +99,10 @@ const QRGenerated = () => {
         <Card className="p-senior-xl text-center mb-senior-lg" id="qr-card">
           <div className="mb-senior">
             {/* 실제 QR 코드 */}
-            <div id="qr-image-only" className="w-48 h-48 mx-auto mb-4 bg-white p-4 rounded-lg border-2 border-border">
+            <div id="qr-image-only" className="w-80 h-80 mx-auto mb-4 bg-white p-6 rounded-lg border-2 border-border">
               <QRCode
                 value={qrCode}
-                size={176}
+                size={288}
                 style={{ height: "auto", maxWidth: "100%", width: "100%" }}
               />
             </div>
