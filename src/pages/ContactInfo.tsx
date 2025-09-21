@@ -19,7 +19,7 @@ const ContactInfo = () => {
       caregiverName: "김영희",
       phoneNumber: "010-1234-5678",
       seniorNotes: "혼자 있으면 불안해하시니 다정하게 말씀해주세요. 당뇨가 있으셔서 단 것을 드시면 안됩니다.",
-      maskedPhone: "010-**12-5678"
+      maskedPhone: "010-****-5678"
     };
     setContactData(mockData);
   }, [qrId]);
