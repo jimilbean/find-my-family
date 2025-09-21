@@ -52,20 +52,34 @@ const QRGenerated = () => {
       <style dangerouslySetInnerHTML={{
         __html: `
           @media print {
-            body * {
+            * {
               visibility: hidden;
+              margin: 0;
+              padding: 0;
             }
-            #qr-image-only, #qr-image-only * {
-              visibility: visible;
+            html, body {
+              margin: 0;
+              padding: 0;
+              background: white !important;
             }
             #qr-image-only {
-              position: absolute;
-              left: 50%;
+              visibility: visible;
+              position: fixed;
               top: 50%;
+              left: 50%;
               transform: translate(-50%, -50%);
               background: white !important;
               padding: 20px;
-              border-radius: 8px;
+              margin: 0;
+              border: none;
+              box-shadow: none;
+            }
+            #qr-image-only * {
+              visibility: visible;
+            }
+            @page {
+              margin: 0;
+              size: A4;
             }
           }
         `
