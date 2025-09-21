@@ -94,7 +94,7 @@ const ContactInfo = () => {
             <Phone className="w-5 h-5 text-primary mr-2" />
             <div 
               className="cursor-pointer flex items-center"
-              onClick={() => setShowFullPhone(true)}
+              onClick={() => setShowFullPhone(!showFullPhone)}
             >
               <span className="text-senior-xl font-bold text-primary mr-2">
                 {showFullPhone ? contactData.phoneNumber : contactData.maskedPhone}
