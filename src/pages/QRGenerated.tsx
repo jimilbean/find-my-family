@@ -169,7 +169,7 @@ const QRGenerated = () => {
           <Button 
             variant="senior-ghost" 
             onClick={() => navigate('/')}
-            className="mr-4 border border-border"
+            className="mr-4 border-2 border-border"
           >
             홈으로 가기
           </Button>
