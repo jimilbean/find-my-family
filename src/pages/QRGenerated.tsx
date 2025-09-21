@@ -55,20 +55,17 @@ const QRGenerated = () => {
             body * {
               visibility: hidden;
             }
-            #qr-card, #qr-card * {
+            #qr-image-only, #qr-image-only * {
               visibility: visible;
             }
-            #qr-card {
+            #qr-image-only {
               position: absolute;
-              left: 0;
-              top: 0;
-              width: 100%;
-              height: 100%;
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              align-items: center;
+              left: 50%;
+              top: 50%;
+              transform: translate(-50%, -50%);
               background: white !important;
+              padding: 20px;
+              border-radius: 8px;
             }
           }
         `
@@ -88,7 +85,7 @@ const QRGenerated = () => {
         <Card className="p-senior-xl text-center mb-senior-lg" id="qr-card">
           <div className="mb-senior">
             {/* 실제 QR 코드 */}
-            <div className="w-48 h-48 mx-auto mb-4 bg-white p-4 rounded-lg border-2 border-border">
+            <div id="qr-image-only" className="w-48 h-48 mx-auto mb-4 bg-white p-4 rounded-lg border-2 border-border">
               <QRCode
                 value={qrCode}
                 size={176}
