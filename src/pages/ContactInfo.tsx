@@ -163,8 +163,8 @@ const ContactInfo = () => {
             <h3 className="text-senior-lg font-semibold text-destructive mb-2">
               응급 상황 시
             </h3>
-            <p className="text-senior-sm text-muted-foreground mb-4">
-              어르신이 의식을 잃었거나 심각한 부상이 의심될 경우:
+            <p className="text-senior-xs text-muted-foreground mb-4">
+              어르신이 의식을 잃었거나 심각한 부상이 의심될 경우
             </p>
             <Button 
               variant="destructive" 
