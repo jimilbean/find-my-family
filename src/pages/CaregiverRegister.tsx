@@ -123,7 +123,7 @@ const CaregiverRegister = () => {
                   placeholder="예: 혼자 있으면 불안해하시니 다정하게 말씀해주세요"
                   rows={4}
                   maxLength={200}
-                  className="text-senior-base p-senior pl-12"
+                  className="text-senior-base p-senior pl-12 resize-none"
                 />
               </div>
               <p className="text-senior-sm text-muted-foreground text-right">
