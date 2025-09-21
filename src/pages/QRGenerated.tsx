@@ -49,6 +49,30 @@ const QRGenerated = () => {
 
   return (
     <div className="min-h-screen bg-background p-6 md:p-12">
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          @media print {
+            body * {
+              visibility: hidden;
+            }
+            #qr-card, #qr-card * {
+              visibility: visible;
+            }
+            #qr-card {
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 100%;
+              height: 100%;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              background: white !important;
+            }
+          }
+        `
+      }} />
       <div className="mx-auto max-w-2xl">
         {/* 헤더 */}
         <div className="text-center mb-senior-xl">
