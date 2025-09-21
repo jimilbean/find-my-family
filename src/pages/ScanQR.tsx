@@ -27,7 +27,7 @@ const ScanQR = () => {
     <div className="min-h-screen bg-background p-6 md:p-12">
       <div className="mx-auto max-w-md">
         {/* 헤더 */}
-        <div className="text-center mb-senior-xl">
+        <div className="text-left mb-senior-xl">
           <Button 
             variant="ghost" 
             onClick={() => navigate('/')}
