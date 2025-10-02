@@ -109,6 +109,9 @@ const QRGenerated = () => {
               <QRCode
                 value={qrCode}
                 size={288}
+                level="L"
+                fgColor="#000000"
+                bgColor="#FFFFFF"
                 style={{ height: "auto", maxWidth: "100%", width: "100%" }}
               />
             </div>
