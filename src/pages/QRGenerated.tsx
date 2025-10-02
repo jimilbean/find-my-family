@@ -82,6 +82,8 @@ const QRGenerated = () => {
             #qr-image-only svg {
               width: 420px !important;
               height: 420px !important;
+              image-rendering: pixelated !important;
+              shape-rendering: crispEdges !important;
             }
             @page {
               margin: 0;
@@ -105,14 +107,19 @@ const QRGenerated = () => {
         <Card className="p-senior-xl text-center mb-senior-lg" id="qr-card">
           <div className="mb-senior">
             {/* 실제 QR 코드 */}
-            <div id="qr-image-only" className="w-80 h-80 mx-auto mb-4 bg-white p-6 rounded-lg border-2 border-border">
+            <div id="qr-image-only" className="w-80 h-80 mx-auto mb-4 bg-white p-4 rounded-lg border-2 border-border">
               <QRCode
                 value={qrCode}
                 size={288}
                 level="L"
                 fgColor="#000000"
                 bgColor="#FFFFFF"
-                style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+                style={{ 
+                  height: "auto", 
+                  maxWidth: "100%", 
+                  width: "100%",
+                  imageRendering: "pixelated"
+                }}
               />
             </div>
             
@@ -152,18 +159,18 @@ const QRGenerated = () => {
             📋 사용법 안내
           </h3>
           <div className="text-senior-base text-primary/80 space-y-3">
-            <div className="flex items-start gap-3">
-              <span className="text-primary font-bold">1.</span>
-              <p>QR코드를 스티커로 출력하거나 라미네이팅하여 어르신 옷에 부착해주세요</p>
-            </div>
-            <div className="flex items-start gap-3">
-              <span className="text-primary font-bold">2.</span>
-              <p>누군가 QR코드를 스캔하면 연락처가 표시됩니다</p>
-            </div>
-            <div className="flex items-start gap-3">
-              <span className="text-primary font-bold">3.</span>
-              <p>발견자가 쉽게 전화를 걸 수 있습니다</p>
-            </div>
+          <div className="flex items-start gap-3">
+            <span className="text-primary font-bold">1.</span>
+            <p>QR코드를 **1cm x 1cm 크기** 이상으로 출력하면 스캔이 잘 됩니다</p>
+          </div>
+          <div className="flex items-start gap-3">
+            <span className="text-primary font-bold">2.</span>
+            <p>방수 스티커나 라미네이팅으로 보호하여 어르신 옷에 부착해주세요</p>
+          </div>
+          <div className="flex items-start gap-3">
+            <span className="text-primary font-bold">3.</span>
+            <p>QR 스캔 시 보호자 연락처가 바로 표시되어 즉시 전화 가능합니다</p>
+          </div>
           </div>
         </Card>
 
