@@ -14,13 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      caregiver_info: {
+        Row: {
+          caregiver_name: string
+          created_at: string
+          id: string
+          phone_number: string
+          senior_notes: string | null
+          short_id: string
+        }
+        Insert: {
+          caregiver_name: string
+          created_at?: string
+          id?: string
+          phone_number: string
+          senior_notes?: string | null
+          short_id: string
+        }
+        Update: {
+          caregiver_name?: string
+          created_at?: string
+          id?: string
+          phone_number?: string
+          senior_notes?: string | null
+          short_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      generate_short_id: {
+        Args: Record<PropertyKey, never>
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never
