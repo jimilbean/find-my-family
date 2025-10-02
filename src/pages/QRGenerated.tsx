@@ -13,8 +13,8 @@ const QRGenerated = () => {
   useEffect(() => {
     // QR 코드 생성 로직
     const generateQRCode = () => {
-      // QR 코드는 항상 memorycp.com으로 이동
-      const qrUrl = "https://www.memorycp.com/";
+      // QR 코드는 이 앱의 홈 화면으로 이동
+      const qrUrl = `${window.location.origin}/`;
       setQRCode(qrUrl);
     };
 
