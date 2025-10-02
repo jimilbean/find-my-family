@@ -25,7 +25,7 @@ const QRGenerated = () => {
     window.print();
   };
 
-  if (!caregiverData.shortId || !caregiverData.caregiverName) {
+  if (!caregiverData.caregiverName) {
     return (
       <div className="min-h-screen bg-background p-6 md:p-12 flex items-center justify-center">
         <Card className="p-senior-xl text-center">
