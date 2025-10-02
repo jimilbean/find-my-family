@@ -13,12 +13,12 @@ const QRGenerated = () => {
   useEffect(() => {
     // QR 코드 생성 로직
     const generateQRCode = () => {
-      // QR 코드는 이 앱의 홈 화면으로 이동
-      const qrUrl = `${window.location.origin}/`;
+      // 짧은 URL로 QR 코드 생성
+      const qrUrl = `${window.location.origin}/c/${caregiverData.shortId}`;
       setQRCode(qrUrl);
     };
 
-    if (caregiverData.caregiverName) {
+    if (caregiverData.shortId) {
       generateQRCode();
     }
   }, [caregiverData]);
@@ -32,7 +32,7 @@ const QRGenerated = () => {
     window.print();
   };
 
-  if (!caregiverData.caregiverName) {
+  if (!caregiverData.shortId || !caregiverData.caregiverName) {
     return (
       <div className="min-h-screen bg-background p-6 md:p-12 flex items-center justify-center">
         <Card className="p-senior-xl text-center">

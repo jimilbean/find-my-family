@@ -8,6 +8,7 @@ import CaregiverRegister from "./pages/CaregiverRegister";
 import QRGenerated from "./pages/QRGenerated";
 import ScanQR from "./pages/ScanQR";
 import ContactInfo from "./pages/ContactInfo";
+import CaregiverContact from "./pages/CaregiverContact";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/caregiver" element={<CaregiverRegister />} />
           <Route path="/qr-generated" element={<QRGenerated />} />
           <Route path="/scan" element={<ScanQR />} />
+          <Route path="/c/:shortId" element={<CaregiverContact />} />
           <Route path="/contact/:qrId" element={<ContactInfo />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

@@ -6,9 +6,12 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const CaregiverRegister = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     caregiverName: '',
     phoneNumber: '',
@@ -16,6 +19,7 @@ const CaregiverRegister = () => {
     finderMessage: ''
   });
   const [messageLength, setMessageLength] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({
@@ -28,11 +32,77 @@ const CaregiverRegister = () => {
     }
   };
 
-  const handleSubmit = () => {
-    // TODO: Supabase 연동으로 데이터 저장
-    console.log('Form data:', formData);
-    // QR 코드 생성 페이지로 이동
-    navigate('/qr-generated', { state: formData });
+  const handleSubmit = async () => {
+    if (!formData.caregiverName || !formData.phoneNumber) {
+      toast({
+        variant: "destructive",
+        title: "필수 정보 누락",
+        description: "보호자 이름과 연락처를 입력해주세요.",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      // 짧은 ID 생성 및 데이터베이스에 저장
+      let shortId = "";
+      let isUnique = false;
+      
+      while (!isUnique) {
+        // 짧은 ID 생성
+        const { data: generatedId, error: generateError } = await supabase
+          .rpc('generate_short_id');
+        
+        if (generateError) throw generateError;
+        shortId = generatedId;
+
+        // 중복 확인
+        const { data: existing } = await supabase
+          .from('caregiver_info')
+          .select('short_id')
+          .eq('short_id', shortId)
+          .maybeSingle();
+
+        if (!existing) isUnique = true;
+      }
+
+      // 보호자 정보 저장
+      const { error: insertError } = await supabase
+        .from('caregiver_info')
+        .insert({
+          short_id: shortId,
+          caregiver_name: formData.caregiverName,
+          phone_number: formData.phoneNumber,
+          senior_notes: formData.finderMessage || null,
+        });
+
+      if (insertError) throw insertError;
+
+      toast({
+        title: "등록 완료!",
+        description: "QR 코드가 생성되었습니다.",
+      });
+
+      // QR 생성 페이지로 이동
+      navigate("/qr-generated", {
+        state: {
+          shortId,
+          caregiverName: formData.caregiverName,
+          phoneNumber: formData.phoneNumber,
+          seniorNotes: formData.finderMessage,
+        },
+      });
+    } catch (error) {
+      console.error('Error saving caregiver info:', error);
+      toast({
+        variant: "destructive",
+        title: "저장 실패",
+        description: "정보 저장 중 오류가 발생했습니다. 다시 시도해주세요.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const isFormValid = formData.caregiverName && formData.phoneNumber;
@@ -145,10 +215,10 @@ const CaregiverRegister = () => {
                 variant="senior-primary" 
                 size="senior-lg" 
                 onClick={handleSubmit}
-                disabled={!isFormValid}
+                disabled={!isFormValid || isSubmitting}
                 className="w-full"
               >
-                QR 코드 생성하기
+                {isSubmitting ? "생성 중..." : "QR 코드 생성하기"}
               </Button>
             </div>
           </div>
