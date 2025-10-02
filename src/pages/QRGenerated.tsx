@@ -11,17 +11,10 @@ const QRGenerated = () => {
   const [caregiverData] = useState(location.state || {});
 
   useEffect(() => {
-    // QR 코드 생성 로직
-    const generateQRCode = () => {
-      // 짧은 URL로 QR 코드 생성
-      const qrUrl = `${window.location.origin}/c/${caregiverData.shortId}`;
-      setQRCode(qrUrl);
-    };
-
-    if (caregiverData.shortId) {
-      generateQRCode();
-    }
-  }, [caregiverData]);
+    // QR 코드 생성 로직 - 홈 화면으로 이동
+    const qrUrl = window.location.origin;
+    setQRCode(qrUrl);
+  }, []);
 
   const downloadQR = () => {
     // TODO: 실제 QR 코드 이미지 다운로드 기능
