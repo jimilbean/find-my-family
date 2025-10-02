@@ -13,13 +13,15 @@ const QRGenerated = () => {
   useEffect(() => {
     // QR 코드 생성 로직
     const generateQRCode = () => {
-      // 홈화면 URL로 QR 코드 생성
-      const qrUrl = window.location.origin;
+      // 짧은 URL로 QR 코드 생성
+      const qrUrl = `${window.location.origin}/c/${caregiverData.shortId}`;
       setQRCode(qrUrl);
     };
 
-    generateQRCode();
-  }, []);
+    if (caregiverData.shortId) {
+      generateQRCode();
+    }
+  }, [caregiverData]);
 
   const downloadQR = () => {
     // TODO: 실제 QR 코드 이미지 다운로드 기능
