@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useLocation, useNavigate } from "react-router-dom";
 import QRCode from "react-qr-code";
+import { Download } from "lucide-react";
 
 const QRGenerated = () => {
   const location = useLocation();
@@ -84,7 +85,8 @@ const QRGenerated = () => {
 
           {/* 다운로드 버튼 */}
           <Button variant="senior-primary" size="senior" onClick={downloadQR} className="w-full text-white mb-3">
-            📥 QR코드 다운로드
+            <Download className="mr-2" size={20} />
+            QR코드 다운로드
           </Button>
           
           {/* 정보 수정하기 버튼 */}
