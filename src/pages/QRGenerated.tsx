@@ -83,8 +83,18 @@ const QRGenerated = () => {
           </div>
 
           {/* 다운로드 버튼 */}
-          <Button variant="senior-primary" size="senior" onClick={downloadQR} className="w-full">
+          <Button variant="senior-primary" size="senior" onClick={downloadQR} className="w-full text-white mb-3">
             📥 QR코드 다운로드
+          </Button>
+          
+          {/* 정보 수정하기 버튼 */}
+          <Button 
+            variant="outline" 
+            size="senior" 
+            onClick={() => navigate('/caregiver', { state: caregiverData })}
+            className="w-full bg-white text-primary border-primary hover:bg-primary/5"
+          >
+            정보 수정하기
           </Button>
         </Card>
 
