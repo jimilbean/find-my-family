@@ -98,29 +98,6 @@ const QRGenerated = () => {
 
         {/* QR 코드 카드 */}
         <Card className="p-senior-xl text-center mb-senior-lg" id="qr-card">
-          <div className="mb-senior">
-            {/* 실제 QR 코드 */}
-            <div id="qr-image-only" className="w-80 h-80 mx-auto mb-4 bg-white p-4 rounded-lg border-2 border-border">
-              <QRCode
-                value={qrCode}
-                size={288}
-                level="L"
-                fgColor="#000000"
-                bgColor="#FFFFFF"
-                style={{ 
-                  height: "auto", 
-                  maxWidth: "100%", 
-                  width: "100%",
-                  imageRendering: "pixelated"
-                }}
-              />
-            </div>
-            
-            <div className="text-senior-sm text-muted-foreground break-all">
-              {qrCode}
-            </div>
-          </div>
-
           {/* 등록 정보 표시 */}
           <div className="bg-accent p-4 rounded-lg mb-senior">
             <h3 className="text-senior-lg font-semibold text-accent-foreground mb-2">
@@ -133,6 +110,23 @@ const QRGenerated = () => {
                 <p><strong>참고사항:</strong> {caregiverData.seniorNotes}</p>
               )}
             </div>
+          </div>
+
+          {/* 실제 QR 코드 */}
+          <div id="qr-image-only" className="w-80 h-80 mx-auto bg-white p-4 rounded-lg border-2 border-border">
+            <QRCode
+              value={qrCode}
+              size={288}
+              level="L"
+              fgColor="#000000"
+              bgColor="#FFFFFF"
+              style={{ 
+                height: "auto", 
+                maxWidth: "100%", 
+                width: "100%",
+                imageRendering: "pixelated"
+              }}
+            />
           </div>
         </Card>
 
