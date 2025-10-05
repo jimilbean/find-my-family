@@ -21,10 +21,6 @@ const QRGenerated = () => {
     alert("QR코드 다운로드 기능은 Supabase 연동 후 구현됩니다.");
   };
 
-  const printQR = () => {
-    window.print();
-  };
-
   if (!caregiverData.caregiverName) {
     return (
       <div className="min-h-screen bg-background p-6 md:p-12 flex items-center justify-center">
@@ -42,49 +38,6 @@ const QRGenerated = () => {
 
   return (
     <div className="min-h-screen bg-background p-6 md:p-12">
-      <style dangerouslySetInnerHTML={{
-        __html: `
-          @media print {
-            * {
-              visibility: hidden;
-              margin: 0;
-              padding: 0;
-            }
-            html, body {
-              margin: 0;
-              padding: 0;
-              background: white !important;
-            }
-            #qr-image-only {
-              visibility: visible;
-              position: fixed;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%);
-              background: white !important;
-              padding: 40px;
-              margin: 0;
-              border: none;
-              box-shadow: none;
-              width: 500px !important;
-              height: 500px !important;
-            }
-            #qr-image-only * {
-              visibility: visible;
-            }
-            #qr-image-only svg {
-              width: 420px !important;
-              height: 420px !important;
-              image-rendering: pixelated !important;
-              shape-rendering: crispEdges !important;
-            }
-            @page {
-              margin: 0;
-              size: A4;
-            }
-          }
-        `
-      }} />
       <div className="mx-auto max-w-2xl">
         {/* 헤더 */}
         <div className="text-center mb-senior-xl">
@@ -113,7 +66,7 @@ const QRGenerated = () => {
           </div>
 
           {/* 실제 QR 코드 */}
-          <div id="qr-image-only" className="w-80 h-80 mx-auto bg-white p-4 rounded-lg border-2 border-border">
+          <div id="qr-image-only" className="w-80 h-80 mx-auto mb-4 bg-white p-4 rounded-lg border-2 border-border">
             <QRCode
               value={qrCode}
               size={288}
@@ -128,20 +81,15 @@ const QRGenerated = () => {
               }}
             />
           </div>
-        </Card>
 
-        {/* 액션 버튼들 */}
-        <div className="grid gap-4 md:grid-cols-2 mb-senior-lg">
-          <Button variant="senior-primary" size="senior" onClick={downloadQR}>
+          {/* 다운로드 버튼 */}
+          <Button variant="senior-primary" size="senior" onClick={downloadQR} className="w-full">
             📥 QR코드 다운로드
           </Button>
-          <Button variant="senior-secondary" size="senior" onClick={printQR}>
-            🖨️ QR코드 출력하기
-          </Button>
-        </div>
+        </Card>
 
         {/* 사용법 안내 */}
-        <Card className="p-senior bg-primary/5 border-primary/20">
+        <Card className="p-senior bg-primary/5 border-primary/20 mb-senior-xl">
           <h3 className="text-senior-xl font-semibold text-primary mb-4">
             📋 QR 코드 사용 안내
           </h3>
@@ -162,7 +110,7 @@ const QRGenerated = () => {
         </Card>
 
         {/* 하단 버튼 */}
-        <div className="mt-senior-xl text-center">
+        <div className="text-center">
           <Button 
             variant="senior-ghost" 
             onClick={() => navigate('/')}
