@@ -12,7 +12,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { useParams, useNavigate } from "react-router-dom";
-import { Phone, MapPin, Camera, Eye, X } from "lucide-react";
+import { Phone, MessageSquare, Camera, Eye, X } from "lucide-react";
 
 const ContactInfo = () => {
   const { qrId } = useParams();
@@ -158,7 +158,7 @@ const ContactInfo = () => {
             disabled={locationShared}
             className="w-full border-primary text-primary hover:bg-primary/10"
           >
-            <MapPin className="w-5 h-5 mr-2" />
+            <MessageSquare className="w-5 h-5 mr-2" />
             보호자에게 문자하기
           </Button>
           
