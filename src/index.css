@@ -179,6 +179,7 @@
 @layer base {
   * {
     @apply border-border;
+    overflow-wrap: break-word;
   }
 
   body {
