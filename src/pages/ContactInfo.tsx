@@ -144,7 +144,7 @@ const ContactInfo = () => {
             variant="senior-primary" 
             size="senior-lg" 
             onClick={handleCallClick}
-            className="w-full"
+            className="w-full !text-white"
           >
             <Phone className="w-5 h-5 mr-2" />
             보호자에게 전화하기
