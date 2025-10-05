@@ -12,7 +12,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { useParams, useNavigate } from "react-router-dom";
-import { Phone, MapPin, Camera, Eye } from "lucide-react";
+import { Phone, MapPin, Camera, Eye, X } from "lucide-react";
 
 const ContactInfo = () => {
   const { qrId } = useParams();
@@ -210,8 +210,15 @@ const ContactInfo = () => {
       {/* 전화 동의 확인 팝업 */}
       <AlertDialog open={showCallDialog} onOpenChange={setShowCallDialog}>
         <AlertDialogContent className="max-w-md">
+          <button
+            onClick={() => setShowCallDialog(false)}
+            className="absolute left-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+          >
+            <X className="h-6 w-6" />
+            <span className="sr-only">닫기</span>
+          </button>
           <AlertDialogHeader>
-            <AlertDialogTitle className="text-senior-xl text-center">
+            <AlertDialogTitle className="text-senior-lg text-center pt-6">
               본인의 전화번호가 보호자에게 노출되는 것에 동의합니까?
             </AlertDialogTitle>
             <AlertDialogDescription className="text-senior-base text-center mt-4">
@@ -225,9 +232,6 @@ const ContactInfo = () => {
             >
               보호자에게 전화하기
             </AlertDialogAction>
-            <AlertDialogCancel className="w-full text-senior-base py-6 mt-2">
-              취소
-            </AlertDialogCancel>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
