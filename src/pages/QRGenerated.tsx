@@ -92,7 +92,7 @@ const QRGenerated = () => {
           <Button 
             variant="outline" 
             size="senior" 
-            onClick={() => navigate('/caregiver', { state: caregiverData })}
+            onClick={() => navigate('/user_modify', { state: caregiverData })}
             className="w-full bg-white text-primary border-primary hover:bg-primary/5"
           >
             정보 수정하기

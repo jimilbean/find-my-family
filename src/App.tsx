@@ -9,6 +9,7 @@ import QRGenerated from "./pages/QRGenerated";
 import ScanQR from "./pages/ScanQR";
 import ContactInfo from "./pages/ContactInfo";
 import CaregiverContact from "./pages/CaregiverContact";
+import UserModify from "./pages/UserModify";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/caregiver" element={<CaregiverRegister />} />
+          <Route path="/user_modify" element={<UserModify />} />
           <Route path="/qr-generated" element={<QRGenerated />} />
           <Route path="/scan" element={<ScanQR />} />
           <Route path="/c/:shortId" element={<CaregiverContact />} />

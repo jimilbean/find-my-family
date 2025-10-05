@@ -4,21 +4,22 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Checkbox } from "@/components/ui/checkbox";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 
-const CaregiverRegister = () => {
+const UserModify = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { toast } = useToast();
+  const existingData = location.state || {};
   
   const [formData, setFormData] = useState({
-    caregiverName: '',
-    phoneNumber: '',
-    seniorName: '',
-    finderMessage: ''
+    caregiverName: existingData.caregiverName || '',
+    phoneNumber: existingData.phoneNumber || '',
+    seniorName: existingData.seniorName || '',
+    finderMessage: existingData.finderMessage || ''
   });
-  const [messageLength, setMessageLength] = useState(0);
+  const [messageLength, setMessageLength] = useState(existingData.finderMessage?.length || 0);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleInputChange = (field: string, value: string) => {
@@ -45,11 +46,11 @@ const CaregiverRegister = () => {
     setIsSubmitting(true);
 
     toast({
-      title: "등록 완료!",
-      description: "QR 코드가 생성되었습니다.",
+      title: "수정 완료!",
+      description: "정보가 수정되었습니다.",
     });
 
-    // QR 생성 페이지로 이동
+    // QR 생성 페이지로 다시 이동
     navigate("/qr-generated", {
       state: {
         caregiverName: formData.caregiverName,
@@ -71,21 +72,21 @@ const CaregiverRegister = () => {
         <div className="mb-senior-xl">
           <Button 
             variant="ghost" 
-            onClick={() => navigate('/')}
+            onClick={() => navigate(-1)}
             className="mb-4 p-0 h-auto text-senior-base"
           >
-            ← 보호자 등록
+            ← 뒤로 가기
           </Button>
         </div>
 
-        {/* 등록 폼 */}
+        {/* 수정 폼 */}
         <Card className="p-senior-xl">
           <div className="mb-senior-lg">
             <h1 className="text-senior-2xl font-bold text-foreground mb-2">
-              보호자 정보 입력
+              정보 수정하기
             </h1>
             <p className="text-senior-base text-muted-foreground">
-              QR 코드 생성을 위한 기본 정보를 입력해주세요
+              등록된 정보를 수정할 수 있습니다
             </p>
           </div>
 
@@ -175,7 +176,7 @@ const CaregiverRegister = () => {
                 disabled={!isFormValid || isSubmitting}
                 className="w-full"
               >
-                {isSubmitting ? "생성 중..." : "QR 코드 생성하기"}
+                {isSubmitting ? "수정 중..." : "수정 완료"}
               </Button>
             </div>
           </div>
@@ -185,4 +186,4 @@ const CaregiverRegister = () => {
   );
 };
 
-export default CaregiverRegister;
+export default UserModify;
