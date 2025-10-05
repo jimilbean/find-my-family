@@ -49,10 +49,7 @@ const ScanQR = () => {
           {/* QR 스캔 영역 시뮬레이션 */}
           <div className="w-64 h-64 mx-auto mb-senior bg-muted border-2 border-dashed border-border rounded-lg flex items-center justify-center">
             <div className="text-center">
-              <QrCode className="w-16 h-16 mx-auto mb-2 text-muted-foreground" />
-              <p className="text-senior-sm text-muted-foreground">
-                카메라가 이곳에<br />표시됩니다
-              </p>
+              <QrCode className="w-16 h-16 mx-auto text-muted-foreground" />
             </div>
           </div>
           
