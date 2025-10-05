@@ -228,7 +228,7 @@ const ContactInfo = () => {
           <AlertDialogFooter className="flex-col space-y-2 sm:space-y-2">
             <AlertDialogAction
               onClick={handleCall}
-              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-senior-base py-6"
+              className="w-full bg-primary hover:bg-primary/90 text-white text-senior-base py-6"
             >
               보호자에게 전화하기
             </AlertDialogAction>
