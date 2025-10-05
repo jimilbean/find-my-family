@@ -21,6 +21,8 @@ const ContactInfo = () => {
   const [showFullPhone, setShowFullPhone] = useState(false);
   const [locationShared, setLocationShared] = useState(false);
   const [showCallDialog, setShowCallDialog] = useState(false);
+  const [showSmsDialog, setShowSmsDialog] = useState(false);
+  const [showPhotoDialog, setShowPhotoDialog] = useState(false);
 
   useEffect(() => {
     // 실제로는 Supabase에서 QR ID로 데이터 조회
@@ -46,7 +48,11 @@ const ContactInfo = () => {
     setShowCallDialog(false);
   };
 
-  const shareLocation = () => {
+  const handleSmsClick = () => {
+    setShowSmsDialog(true);
+  };
+
+  const handleSms = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -66,6 +72,16 @@ const ContactInfo = () => {
     } else {
       alert('이 브라우저는 위치 서비스를 지원하지 않습니다.');
     }
+    setShowSmsDialog(false);
+  };
+
+  const handlePhotoClick = () => {
+    setShowPhotoDialog(true);
+  };
+
+  const handlePhotoSend = () => {
+    // 사진 촬영 및 전송 로직
+    setShowPhotoDialog(false);
   };
 
   if (!contactData) {
@@ -154,7 +170,7 @@ const ContactInfo = () => {
           <Button 
             variant="outline" 
             size="senior-lg" 
-            onClick={shareLocation}
+            onClick={handleSmsClick}
             disabled={locationShared}
             className="w-full border-primary text-primary hover:bg-primary/10"
           >
@@ -166,6 +182,7 @@ const ContactInfo = () => {
           <Button 
             variant="outline" 
             size="senior-lg" 
+            onClick={handlePhotoClick}
             className="w-full border-primary text-primary hover:bg-primary/10"
           >
             <Camera className="w-5 h-5 mr-2" />
@@ -231,6 +248,64 @@ const ContactInfo = () => {
               className="w-full bg-primary hover:bg-primary/90 !text-white text-senior-base py-6"
             >
               보호자에게 전화하기
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* 문자 동의 확인 팝업 */}
+      <AlertDialog open={showSmsDialog} onOpenChange={setShowSmsDialog}>
+        <AlertDialogContent className="max-w-md">
+          <button
+            onClick={() => setShowSmsDialog(false)}
+            className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+          >
+            <X className="h-6 w-6" />
+            <span className="sr-only">닫기</span>
+          </button>
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-senior-lg text-center pt-6">
+              본인의 전화번호가 보호자에게 노출되는 것에 동의합니까?
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-senior-base text-center mt-4">
+              동의하시면 보호자에게 문자 보내기
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter className="flex-col space-y-2 sm:space-y-2">
+            <AlertDialogAction
+              onClick={handleSms}
+              className="w-full bg-primary hover:bg-primary/90 !text-white text-senior-base py-6"
+            >
+              보호자에게 문자하기
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* 사진 전송 동의 확인 팝업 */}
+      <AlertDialog open={showPhotoDialog} onOpenChange={setShowPhotoDialog}>
+        <AlertDialogContent className="max-w-md">
+          <button
+            onClick={() => setShowPhotoDialog(false)}
+            className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+          >
+            <X className="h-6 w-6" />
+            <span className="sr-only">닫기</span>
+          </button>
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-senior-lg text-center pt-6">
+              본인의 전화번호가 보호자에게 노출되는 것에 동의합니까?
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-senior-base text-center mt-4">
+              동의하시면 사진과 위치정보 전송하기
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter className="flex-col space-y-2 sm:space-y-2">
+            <AlertDialogAction
+              onClick={handlePhotoSend}
+              className="w-full bg-primary hover:bg-primary/90 !text-white text-senior-base py-6"
+            >
+              사진과 위치정보 전송하기
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
