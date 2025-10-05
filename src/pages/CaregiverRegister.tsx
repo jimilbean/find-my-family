@@ -53,7 +53,8 @@ const CaregiverRegister = () => {
       state: {
         caregiverName: formData.caregiverName,
         phoneNumber: formData.phoneNumber,
-        seniorNotes: formData.finderMessage,
+        seniorName: formData.seniorName,
+        finderMessage: formData.finderMessage,
       },
     });
 

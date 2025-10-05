@@ -60,9 +60,8 @@ const QRGenerated = () => {
             <div className="text-left text-senior-sm text-accent-foreground space-y-1">
               <p><strong>보호자:</strong> {caregiverData.caregiverName}</p>
               <p><strong>연락처:</strong> {caregiverData.phoneNumber}</p>
-              {caregiverData.seniorNotes && (
-                <p><strong>참고사항:</strong> {caregiverData.seniorNotes}</p>
-              )}
+              <p><strong>어르신 성함:</strong> {caregiverData.seniorName || '-'}</p>
+              <p><strong>메시지:</strong> {caregiverData.finderMessage || '-'}</p>
             </div>
           </div>
 
