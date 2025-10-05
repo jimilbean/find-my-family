@@ -149,20 +149,20 @@ const QRGenerated = () => {
         {/* 사용법 안내 */}
         <Card className="p-senior bg-primary/5 border-primary/20">
           <h3 className="text-senior-xl font-semibold text-primary mb-4">
-            📋 사용법 안내
+            📋 QR 코드 사용 안내
           </h3>
           <div className="text-senior-base text-primary/80 space-y-3">
           <div className="flex items-start gap-3">
             <span className="text-primary font-bold">1.</span>
-            <p>QR코드를 **1cm x 1cm 크기** 이상으로 출력하면 스캔이 잘 됩니다</p>
+            <p>QR 코드 의류용 스티커를 어르신이 자주 입으시는 옷이나 신발, 가방, 모자에 부착해주세요</p>
           </div>
           <div className="flex items-start gap-3">
             <span className="text-primary font-bold">2.</span>
-            <p>방수 스티커나 라미네이팅으로 보호하여 어르신 옷에 부착해주세요</p>
+            <p>QR 코드 손톱용 스티커를 어르신의 손톱이나 발톱에 부착해주세요</p>
           </div>
           <div className="flex items-start gap-3">
             <span className="text-primary font-bold">3.</span>
-            <p>QR 스캔 시 보호자 연락처가 바로 표시되어 즉시 전화 가능합니다</p>
+            <p>QR 코드의 손상 여부를 주기적으로 확인해주세요</p>
           </div>
           </div>
         </Card>
