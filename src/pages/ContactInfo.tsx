@@ -1,6 +1,16 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { useParams, useNavigate } from "react-router-dom";
 import { Phone, MapPin, Camera, Eye } from "lucide-react";
 
@@ -10,6 +20,7 @@ const ContactInfo = () => {
   const [contactData, setContactData] = useState<any>(null);
   const [showFullPhone, setShowFullPhone] = useState(false);
   const [locationShared, setLocationShared] = useState(false);
+  const [showCallDialog, setShowCallDialog] = useState(false);
 
   useEffect(() => {
     // 실제로는 Supabase에서 QR ID로 데이터 조회
@@ -24,10 +35,15 @@ const ContactInfo = () => {
     setContactData(mockData);
   }, [qrId]);
 
+  const handleCallClick = () => {
+    setShowCallDialog(true);
+  };
+
   const handleCall = () => {
     if (contactData?.phoneNumber) {
       window.location.href = `tel:${contactData.phoneNumber}`;
     }
+    setShowCallDialog(false);
   };
 
   const shareLocation = () => {
@@ -127,7 +143,7 @@ const ContactInfo = () => {
           <Button 
             variant="senior-primary" 
             size="senior-lg" 
-            onClick={handleCall}
+            onClick={handleCallClick}
             className="w-full"
           >
             <Phone className="w-5 h-5 mr-2" />
@@ -190,6 +206,31 @@ const ContactInfo = () => {
           </button>
         </div>
       </div>
+
+      {/* 전화 동의 확인 팝업 */}
+      <AlertDialog open={showCallDialog} onOpenChange={setShowCallDialog}>
+        <AlertDialogContent className="max-w-md">
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-senior-xl text-center">
+              본인의 전화번호가 보호자에게 노출되는 것에 동의합니까?
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-senior-base text-center mt-4">
+              동의하시면 보호자에게 전화하기
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter className="flex-col space-y-2 sm:space-y-2">
+            <AlertDialogAction
+              onClick={handleCall}
+              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-senior-base py-6"
+            >
+              보호자에게 전화하기
+            </AlertDialogAction>
+            <AlertDialogCancel className="w-full text-senior-base py-6 mt-2">
+              취소
+            </AlertDialogCancel>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
