@@ -124,13 +124,15 @@ const QRGenerated = () => {
         <div className="text-center">
           <Button 
             variant="senior-ghost" 
+            size="senior"
             onClick={() => navigate('/')}
             className="mr-4 border-2 border-border"
           >
             홈으로 가기
           </Button>
           <Button 
-            variant="senior-secondary" 
+            variant="senior-secondary"
+            size="senior"
             onClick={() => navigate('/caregiver')}
           >
             새 QR코드 만들기
