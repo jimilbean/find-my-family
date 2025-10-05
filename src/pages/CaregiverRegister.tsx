@@ -5,19 +5,22 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 
 const CaregiverRegister = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { toast } = useToast();
+  const existingData = location.state || {};
+  
   const [formData, setFormData] = useState({
-    caregiverName: '',
-    phoneNumber: '',
-    seniorName: '',
-    finderMessage: ''
+    caregiverName: existingData.caregiverName || '',
+    phoneNumber: existingData.phoneNumber || '',
+    seniorName: existingData.seniorName || '',
+    finderMessage: existingData.finderMessage || ''
   });
-  const [messageLength, setMessageLength] = useState(0);
+  const [messageLength, setMessageLength] = useState(existingData.finderMessage?.length || 0);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleInputChange = (field: string, value: string) => {
