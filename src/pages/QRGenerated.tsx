@@ -26,8 +26,10 @@ const QRGenerated = () => {
     const ctx = canvas.getContext("2d");
     const img = new Image();
 
-    canvas.width = 288;
-    canvas.height = 288;
+    const padding = 15;
+    const qrSize = 288;
+    canvas.width = qrSize + (padding * 2);
+    canvas.height = qrSize + (padding * 2);
 
     img.onload = () => {
       if (!ctx) return;
@@ -36,8 +38,8 @@ const QRGenerated = () => {
       ctx.fillStyle = "#FFFFFF";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
-      // QR 코드 그리기
-      ctx.drawImage(img, 0, 0);
+      // QR 코드를 padding을 두고 그리기
+      ctx.drawImage(img, padding, padding, qrSize, qrSize);
       
       // JPG로 변환 및 다운로드
       canvas.toBlob((blob) => {
