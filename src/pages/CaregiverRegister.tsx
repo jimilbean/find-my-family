@@ -21,10 +21,34 @@ const CaregiverRegister = () => {
   const [messageLength, setMessageLength] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const formatPhoneNumber = (value: string) => {
+    // 숫자만 추출
+    const numbers = value.replace(/[^\d]/g, '');
+    
+    // 최대 11자리까지만
+    const limitedNumbers = numbers.slice(0, 11);
+    
+    // 000-0000-0000 형식으로 포맷팅
+    if (limitedNumbers.length <= 3) {
+      return limitedNumbers;
+    } else if (limitedNumbers.length <= 7) {
+      return `${limitedNumbers.slice(0, 3)}-${limitedNumbers.slice(3)}`;
+    } else {
+      return `${limitedNumbers.slice(0, 3)}-${limitedNumbers.slice(3, 7)}-${limitedNumbers.slice(7)}`;
+    }
+  };
+
   const handleInputChange = (field: string, value: string) => {
+    let processedValue = value;
+    
+    // 전화번호 필드인 경우 포맷팅
+    if (field === 'phoneNumber') {
+      processedValue = formatPhoneNumber(value);
+    }
+    
     setFormData(prev => ({
       ...prev,
-      [field]: value
+      [field]: processedValue
     }));
     
     if (field === 'finderMessage') {
