@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
 import { QrCode, Camera, Upload, X } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Html5QrcodeScanner, Html5Qrcode } from "html5-qrcode";
+import { useToast } from "@/hooks/use-toast";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -18,38 +20,114 @@ import {
 const ScanQR = () => {
   const navigate = useNavigate();
   const isMobile = useIsMobile();
+  const { toast } = useToast();
   const [manualInput, setManualInput] = useState("");
   const [showScanDialog, setShowScanDialog] = useState(false);
+  const [showCameraDialog, setShowCameraDialog] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const scannerRef = useRef<Html5QrcodeScanner | null>(null);
 
   const handleManualSubmit = () => {
     if (manualInput.trim()) {
-      // URL에서 QR ID 추출
       const urlParts = manualInput.split('/');
       const qrId = urlParts[urlParts.length - 1];
       navigate(`/contact/${qrId}`);
     }
   };
 
+  const processQRResult = (decodedText: string) => {
+    try {
+      // URL에서 QR ID 추출
+      const urlParts = decodedText.split('/');
+      const qrId = urlParts[urlParts.length - 1];
+      
+      toast({
+        title: "QR 코드 인식 성공",
+        description: "보호자 정보 페이지로 이동합니다.",
+      });
+      
+      navigate(`/contact/${qrId}`);
+    } catch (error) {
+      toast({
+        title: "오류",
+        description: "유효하지 않은 QR 코드입니다.",
+        variant: "destructive",
+      });
+    }
+  };
+
   const handleScanClick = () => {
     if (isMobile) {
-      // 모바일: 옵션 선택 다이얼로그 표시
       setShowScanDialog(true);
     } else {
-      // PC: 바로 사진 업로드
       handlePhotoUpload();
     }
   };
 
   const handleCameraScanning = () => {
-    // 카메라로 QR 스캔
-    alert("카메라 QR 스캔 기능은 추후 구현됩니다.");
     setShowScanDialog(false);
+    setShowCameraDialog(true);
+    
+    // 카메라 스캐너 초기화
+    setTimeout(() => {
+      const scanner = new Html5QrcodeScanner(
+        "camera-scanner-region",
+        { 
+          fps: 10,
+          qrbox: { width: 250, height: 250 },
+          aspectRatio: 1.0,
+        },
+        false
+      );
+      
+      scanner.render(
+        (decodedText) => {
+          scanner.clear();
+          setShowCameraDialog(false);
+          processQRResult(decodedText);
+        },
+        (error) => {
+          // 스캔 실패는 무시 (계속 시도)
+        }
+      );
+      
+      scannerRef.current = scanner;
+    }, 100);
   };
 
   const handlePhotoUpload = () => {
-    // 사진 업로드로 QR 스캔
-    alert("사진 업로드 기능은 추후 구현됩니다.");
     setShowScanDialog(false);
+    fileInputRef.current?.click();
+  };
+
+  const handleFileSelect = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    try {
+      const html5QrCode = new Html5Qrcode("qr-reader");
+      const decodedText = await html5QrCode.scanFile(file, true);
+      processQRResult(decodedText);
+    } catch (error) {
+      toast({
+        title: "오류",
+        description: "QR 코드를 인식할 수 없습니다. 다시 시도해주세요.",
+        variant: "destructive",
+      });
+    }
+    
+    // 파일 입력 초기화
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  };
+
+  const handleCloseCameraDialog = () => {
+    if (scannerRef.current) {
+      scannerRef.current.clear();
+      scannerRef.current = null;
+    }
+    setShowCameraDialog(false);
   };
 
   return (
@@ -181,6 +259,18 @@ const ScanQR = () => {
         </div>
       </div>
 
+      {/* 숨겨진 파일 입력 */}
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        className="hidden"
+        onChange={handleFileSelect}
+      />
+      
+      {/* QR 리더 (숨김) */}
+      <div id="qr-reader" className="hidden"></div>
+
       {/* QR 스캔 방식 선택 다이얼로그 (모바일만) */}
       <AlertDialog open={showScanDialog} onOpenChange={setShowScanDialog}>
         <AlertDialogContent className="max-w-md">
@@ -215,6 +305,28 @@ const ScanQR = () => {
               사진 업로드
             </AlertDialogAction>
           </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* 카메라 스캐너 다이얼로그 */}
+      <AlertDialog open={showCameraDialog} onOpenChange={handleCloseCameraDialog}>
+        <AlertDialogContent className="max-w-lg">
+          <button
+            onClick={handleCloseCameraDialog}
+            className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 z-10"
+          >
+            <X className="h-6 w-6" />
+            <span className="sr-only">닫기</span>
+          </button>
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-senior-lg text-center pt-6">
+              QR 코드를 카메라에 비춰주세요
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-senior-base text-center mt-2">
+              QR 코드가 화면 중앙에 오도록 맞춰주세요
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <div id="camera-scanner-region" className="w-full"></div>
         </AlertDialogContent>
       </AlertDialog>
     </div>
