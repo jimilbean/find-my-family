@@ -3,11 +3,23 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
-import { QrCode } from "lucide-react";
+import { QrCode, Camera, Upload, X } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 const ScanQR = () => {
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
   const [manualInput, setManualInput] = useState("");
+  const [showScanDialog, setShowScanDialog] = useState(false);
 
   const handleManualSubmit = () => {
     if (manualInput.trim()) {
@@ -18,9 +30,26 @@ const ScanQR = () => {
     }
   };
 
-  const startCameraScanning = () => {
-    // 실제로는 QR 스캐너 라이브러리 사용
-    alert("카메라 QR 스캔 기능은 추후 구현됩니다. 지금은 수동 입력을 사용해주세요.");
+  const handleScanClick = () => {
+    if (isMobile) {
+      // 모바일: 옵션 선택 다이얼로그 표시
+      setShowScanDialog(true);
+    } else {
+      // PC: 바로 사진 업로드
+      handlePhotoUpload();
+    }
+  };
+
+  const handleCameraScanning = () => {
+    // 카메라로 QR 스캔
+    alert("카메라 QR 스캔 기능은 추후 구현됩니다.");
+    setShowScanDialog(false);
+  };
+
+  const handlePhotoUpload = () => {
+    // 사진 업로드로 QR 스캔
+    alert("사진 업로드 기능은 추후 구현됩니다.");
+    setShowScanDialog(false);
   };
 
   return (
@@ -56,7 +85,7 @@ const ScanQR = () => {
           <Button 
             variant="senior-primary" 
             size="senior-lg" 
-            onClick={startCameraScanning}
+            onClick={handleScanClick}
             className="w-full mb-senior"
           >
             QR 코드 스캔하기
@@ -151,6 +180,43 @@ const ScanQR = () => {
           </ul>
         </div>
       </div>
+
+      {/* QR 스캔 방식 선택 다이얼로그 (모바일만) */}
+      <AlertDialog open={showScanDialog} onOpenChange={setShowScanDialog}>
+        <AlertDialogContent className="max-w-md">
+          <button
+            onClick={() => setShowScanDialog(false)}
+            className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+          >
+            <X className="h-6 w-6" />
+            <span className="sr-only">닫기</span>
+          </button>
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-senior-lg text-center pt-6">
+              QR 스캔 방식을 선택하세요
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-senior-base text-center mt-4">
+              카메라로 직접 스캔하거나 사진을 업로드할 수 있습니다
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter className="flex-col space-y-2 sm:space-y-2">
+            <AlertDialogAction
+              onClick={handleCameraScanning}
+              className="w-full bg-primary hover:bg-primary/90 !text-white text-senior-base py-6"
+            >
+              <Camera className="w-5 h-5 mr-2" />
+              카메라
+            </AlertDialogAction>
+            <AlertDialogAction
+              onClick={handlePhotoUpload}
+              className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground text-senior-base py-6"
+            >
+              <Upload className="w-5 h-5 mr-2" />
+              사진 업로드
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
