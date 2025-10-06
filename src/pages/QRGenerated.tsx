@@ -18,8 +18,40 @@ const QRGenerated = () => {
   }, []);
 
   const downloadQR = () => {
-    // TODO: 실제 QR 코드 이미지 다운로드 기능
-    alert("QR코드 다운로드 기능은 Supabase 연동 후 구현됩니다.");
+    const svg = document.querySelector("#qr-image-only svg");
+    if (!svg) return;
+
+    const svgData = new XMLSerializer().serializeToString(svg);
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+    const img = new Image();
+
+    canvas.width = 288;
+    canvas.height = 288;
+
+    img.onload = () => {
+      if (!ctx) return;
+      
+      // 흰색 배경 채우기 (JPG는 투명 배경을 지원하지 않음)
+      ctx.fillStyle = "#FFFFFF";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // QR 코드 그리기
+      ctx.drawImage(img, 0, 0);
+      
+      // JPG로 변환 및 다운로드
+      canvas.toBlob((blob) => {
+        if (!blob) return;
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.download = `QR코드_${caregiverData.seniorName || '어르신'}.jpg`;
+        link.href = url;
+        link.click();
+        URL.revokeObjectURL(url);
+      }, "image/jpeg", 0.95);
+    };
+
+    img.src = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(svgData)));
   };
 
   if (!caregiverData.caregiverName) {
